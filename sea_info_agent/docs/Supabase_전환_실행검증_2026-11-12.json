@@ -1,0 +1,93 @@
+{
+  "migration_inserted": {
+    "adminlog": 0,
+    "board": 0,
+    "inquiry": 2,
+    "news": 0,
+    "newsrun": 0,
+    "newssource": 0,
+    "quizquestion": 0,
+    "scorelog": 0,
+    "setting": 0,
+    "species": 1,
+    "user": 0,
+    "observation": 2,
+    "post": 1,
+    "comment": 2,
+    "like": 0,
+    "report": 0,
+    "comment_reply": 0,
+    "report_detail": 0
+  },
+  "added_tables": [
+    "comment_reply",
+    "report_detail"
+  ],
+  "runtime": {
+    "checks": {
+      "health": "pass",
+      "api_save_committed_to_supabase": "pass",
+      "api_read_matches_saved_record": "pass",
+      "api_update_committed_to_supabase": "pass",
+      "verification_record_cleanup": "pass",
+      "sqlite_not_written": "pass",
+      "jira_live_inquiry_creation": "pass",
+      "jira_duplicate_prevention": "pass",
+      "jira_done_transition": "pass",
+      "jira_done_synced_to_supabase": "pass"
+    },
+    "checked_at": "2026-11-12T15:27:34.952436+09:00",
+    "health": {
+      "ok": true,
+      "database_backend": "postgresql",
+      "database_schema": "sea_info",
+      "redis": true
+    },
+    "inquiry_id": "R-1112-A6M7",
+    "jira_key": "KAN-7",
+    "jira_url": "https://marinebaro12.atlassian.net/browse/KAN-7",
+    "status": "pass"
+  },
+  "audit": {
+    "status": "pass",
+    "remaining_source_records_to_insert": 0,
+    "sqlite_original_unchanged": true,
+    "foreign_keys_validated": 13,
+    "comment_mappings": 36,
+    "sequence_checks": [
+      "adminlog",
+      "newsrun",
+      "newssource",
+      "quizquestion",
+      "scorelog",
+      "like",
+      "report"
+    ],
+    "referenced_photos": 1,
+    "missing_photo_files": 0,
+    "remote_counts": {
+      "adminlog": 4,
+      "board": 5,
+      "inquiry": 7,
+      "news": 5,
+      "newsrun": 2,
+      "newssource": 3,
+      "quizquestion": 6,
+      "scorelog": 0,
+      "setting": 1,
+      "species": 10,
+      "user": 7,
+      "observation": 6,
+      "post": 13,
+      "comment": 38,
+      "like": 0,
+      "report": 4,
+      "comment_reply": 0,
+      "report_detail": 0
+    }
+  },
+  "regression_tests": {
+    "total": 35,
+    "passed": 35
+  }
+}

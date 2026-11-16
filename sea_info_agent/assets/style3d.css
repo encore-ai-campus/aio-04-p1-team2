@@ -1,0 +1,190 @@
+/* Sea-Info 입체(A+B) 스타일 — 시안 "입체(A+B)": 밝고 선명한 옥색 하늘빛 + 해가 뜬 배너 + 노란 광택 버튼  [시험용 복사본, 2026.11.13 jongmin]
+   - A: 겹친 그림자·두툼한 버튼·파인 입력칸 / B: 입체 그림(SVG 배경: 해, 물결)
+   - 이 파일을 안 읽게 하면(SEA_3D=0) 원래 모양으로 돌아가요. config.toml 은 건드리지 않아요.
+   - 테두리 카드(st.container(border=True))는 Streamlit 1.67.0이 붙이는 이름 st-emotion-cache-czyz8e / 1j1lkys 로 잡아요.
+     Streamlit 버전을 올리거나 config.toml 색·둥글기를 바꾸면 이 이름이 달라질 수 있어요 → 카드가 평평해 보이면 아래 이름만 다시 확인. */
+:root{
+  --d-ink:#0B1B2B; --d-acc:#00697A;
+  --d-sky:#EAF8FC; --d-sky2:#BDEBF3; --d-sun:#FFE066; --d-coral:#FFC9BC;
+  --d-edge:rgba(11,27,43,.08);
+  --d-sh1:0 1px 0 #FFFFFF inset, 0 2px 0 rgba(0,90,120,.08), 0 14px 30px -6px rgba(0,80,110,.16);
+  --d-sh2:0 1px 0 #FFFFFF inset, 0 2px 0 rgba(0,90,120,.07), 0 6px 14px -4px rgba(0,80,110,.14);
+  --d-prim:linear-gradient(180deg,#FFDD4A 0%,#FFCC00 52%,#F0B800 100%);
+}
+
+/* ---------- 바탕·사이드바 ---------- */
+[data-testid="stAppViewContainer"]{background:var(--d-sky)}
+[data-testid="stSidebar"]{background:#FFFFFF;border-right:1px solid var(--d-edge);box-shadow:6px 0 20px -12px rgba(0,80,110,.25)}
+[data-testid="stHeader"]{background:transparent}
+
+/* ---------- 카드: 테두리 있는 상자 ---------- */
+[data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]){
+  background:#FFFFFF;border:1px solid var(--d-edge);border-radius:16px;box-shadow:var(--d-sh1);
+  transition:transform .18s ease, box-shadow .18s ease}
+[data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]):hover{
+  transform:translateY(-2px);box-shadow:0 1px 0 #FFFFFF inset, 0 3px 0 rgba(0,90,120,.09), 0 20px 36px -8px rgba(0,80,110,.22)}
+[data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]) [data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]){
+  box-shadow:var(--d-sh2);background:#F6FCFE;transform:none}
+[data-testid="stForm"]:not([class*="1j8ouk0"]){border-radius:16px;box-shadow:var(--d-sh2);background:#FFFFFF;border-color:var(--d-edge)}
+[data-testid="stExpander"] details{border-radius:14px;box-shadow:var(--d-sh2);background:#FFFFFF;border-color:var(--d-edge)}
+[data-testid="stMetric"]{background:linear-gradient(180deg,#F2FBFE,#DDF3F8);border-radius:14px;box-shadow:0 1px 0 #FFFFFF inset, 0 3px 0 rgba(0,90,120,.12), 0 8px 12px -6px rgba(0,80,110,.18)}
+
+/* ---------- 홈 배너: 밝은 옥색 판 + 해 + 물결 ---------- */
+.st-key-home_hero{position:relative;overflow:hidden;border-radius:18px;
+  background:linear-gradient(150deg,#8BE3F0 0%,#1FB6DA 50%,#0A9BD0 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 2px 0 rgba(0,90,120,.12), 0 16px 34px -6px rgba(0,105,140,.38)}
+.st-key-home_hero .eyebrow{color:#0B1B2B;opacity:.8}
+.st-key-home_hero h2,.st-key-home_hero p{color:#0B1B2B!important;opacity:1}
+.st-key-home_hero::before{content:"";position:absolute;right:-6px;top:-8px;width:170px;height:170px;pointer-events:none;
+  background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='s' cx='35%25' cy='30%25' r='75%25'%3E%3Cstop offset='0' stop-color='%23FFF3A8'/%3E%3Cstop offset='.45' stop-color='%23FFC800'/%3E%3Cstop offset='1' stop-color='%23E39A00'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='110' cy='90' r='66' fill='%23FFFFFF' fill-opacity='.30'/%3E%3Ccircle cx='110' cy='90' r='48' fill='url(%23s)'/%3E%3Cellipse cx='96' cy='72' rx='14' ry='9' fill='%23FFFFFF' fill-opacity='.6'/%3E%3C/svg%3E") no-repeat center/contain;filter:drop-shadow(0 8px 10px rgba(0,80,110,.30))}
+.st-key-home_hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:54px;pointer-events:none;
+  background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 54' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C80 8 150 52 240 30 S400 10 480 30 S560 44 600 26 V54 H0Z' fill='%23FFFFFF' fill-opacity='.38'/%3E%3Cpath d='M0 42 C90 22 170 58 260 40 S420 24 500 42 S570 48 600 38 V54 H0Z' fill='%23FFFFFF' fill-opacity='.55'/%3E%3C/svg%3E") no-repeat bottom/100% 100%}
+.st-key-home_hero>*{position:relative;z-index:1}
+.sia-hero-chip{background:rgba(255,255,255,.6)!important;color:#0B1B2B!important;box-shadow:0 1px 0 #FFFFFF inset, 0 2px 0 rgba(0,90,120,.15)}
+
+/* ---------- 버튼: 두툼하게, 누르면 눌림 ---------- */
+button[data-testid="stBaseButton-secondary"],button[data-testid="stBaseButton-secondaryFormSubmit"],button[data-testid="stPopoverButton"],
+[data-testid="stDownloadButton"] button,[data-testid="stLinkButton"] a{
+  background:linear-gradient(180deg,#FFFFFF,#F3F6F8)!important;color:var(--d-ink)!important;
+  border:1px solid rgba(11,27,43,.14)!important;border-radius:10px!important;
+  box-shadow:0 1px 0 #FFFFFF inset, 0 3px 0 rgba(11,27,43,.14), 0 7px 10px -5px rgba(11,27,43,.18)!important;
+  transition:transform .08s ease, box-shadow .08s ease, filter .15s ease}
+button[data-testid="stBaseButton-secondary"]:hover,button[data-testid="stBaseButton-secondaryFormSubmit"]:hover,button[data-testid="stPopoverButton"]:hover{filter:brightness(1.03);transform:translateY(-1px)}
+button[data-testid="stBaseButton-secondary"]:active,button[data-testid="stBaseButton-secondaryFormSubmit"]:active,button[data-testid="stPopoverButton"]:active{
+  transform:translateY(3px);box-shadow:0 1px 0 #FFFFFF inset, 0 0 0 rgba(11,27,43,.14), 0 1px 3px -1px rgba(11,27,43,.2)!important}
+button[data-testid="stBaseButton-primary"],button[data-testid="stBaseButton-primaryFormSubmit"]{
+  background:var(--d-prim)!important;color:var(--d-ink)!important;
+  border:1px solid #D9A400!important;border-radius:10px!important;
+  box-shadow:0 1px 0 rgba(255,255,255,.75) inset, 0 -2px 0 rgba(160,110,0,.18) inset, 0 3px 0 #C99600, 0 8px 12px -4px rgba(120,85,0,.32)!important;
+  transition:transform .08s ease, box-shadow .08s ease, filter .15s ease}
+button[data-testid="stBaseButton-primary"] *,button[data-testid="stBaseButton-primaryFormSubmit"] *{color:var(--d-ink)!important}
+button[data-testid="stBaseButton-primary"]:hover,button[data-testid="stBaseButton-primaryFormSubmit"]:hover{filter:brightness(1.05);transform:translateY(-1px)}
+button[data-testid="stBaseButton-primary"]:active,button[data-testid="stBaseButton-primaryFormSubmit"]:active{
+  transform:translateY(3px);box-shadow:0 1px 0 rgba(255,255,255,.75) inset, 0 0 0 #C99600, 0 2px 4px -2px rgba(120,85,0,.4)!important}
+button[data-testid="stBaseButton-primary"]:disabled,button[data-testid="stBaseButton-secondary"]:disabled{filter:grayscale(.6) opacity(.65);transform:none;box-shadow:none!important}
+/* 홈 배너 안 주 버튼은 시안처럼 하얀 판 */
+.st-key-home_hero button[data-testid="stBaseButton-primary"]{background:linear-gradient(180deg,#FFFFFF,#EAF6FA)!important;border:1px solid #FFFFFF!important;
+  box-shadow:0 3px 0 rgba(0,80,110,.25), 0 8px 14px -4px rgba(0,80,110,.30)!important}
+.st-key-home_hero button[data-testid="stBaseButton-primary"]:hover{background:linear-gradient(180deg,#FFFFFF,#E3F4F8)!important}
+.st-key-home_hero button[data-testid="stBaseButton-primary"]:active{box-shadow:0 0 0 rgba(0,80,110,.25), 0 2px 4px -2px rgba(0,80,110,.3)!important}
+button[data-testid="stBaseButton-tertiary"]{border-radius:10px}
+button:focus-visible,a:focus-visible{outline:3px solid #FFB000!important;outline-offset:2px}
+
+/* ---------- 홈 3단계 띠, 예시 생물 단추, 꼬리표, 사진 자리 ---------- */
+.sia-steps{background:var(--d-sky2);border-radius:14px;box-shadow:0 1px 0 #FFFFFF inset, 0 3px 0 rgba(0,90,120,.10), 0 8px 12px -6px rgba(0,80,110,.18)}
+.sia-steps .n{background:linear-gradient(180deg,#26384A,#0B1B2B);box-shadow:0 2px 0 #000000, inset 0 1px 0 rgba(255,255,255,.3)}
+.sia-steps .arr{color:#2C6F80}
+.st-key-home_try [class*="st-key-home_try_"] button{border:1px solid rgba(255,255,255,.7)!important;box-shadow:0 1px 0 rgba(255,255,255,.8) inset, 0 3px 0 rgba(0,90,120,.14), 0 7px 10px -4px rgba(0,80,110,.18)!important}
+.st-key-home_try [class*="st-key-home_try_"]:nth-child(1) button{background:linear-gradient(180deg,#D3F3F9,#BDEBF3)!important}
+.st-key-home_try [class*="st-key-home_try_"]:nth-child(2) button{background:linear-gradient(180deg,#FFEC8A,#FFE066)!important}
+.st-key-home_try [class*="st-key-home_try_"]:nth-child(3) button{background:linear-gradient(180deg,#FFDDD3,#FFC9BC)!important}
+.sia-chip{box-shadow:0 1px 0 #FFFFFF inset, 0 2px 0 rgba(0,90,120,.12)}
+.sia-chip.demo{background:var(--d-sun);border-color:transparent;color:var(--d-ink)}
+.sia-chip.sea{background:var(--d-acc)}
+.t-aqua{background:linear-gradient(135deg,#D3F3F9,#7FD3E6)}
+.t-sand{background:linear-gradient(135deg,#FFF0B0,#FFD24D)}
+.t-coral{background:linear-gradient(135deg,#FFE2DA,#FFA58F)}
+.sia-photo{box-shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 -3px 0 rgba(0,90,120,.10) inset, 0 6px 10px -5px rgba(0,80,110,.35)}
+.sia-photo::before{content:"";position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0));pointer-events:none}
+.sia-photo span{filter:drop-shadow(0 6px 5px rgba(0,80,110,.30))}
+.sia-celebrate{box-shadow:var(--d-sh1)}
+
+/* ---------- 입력칸은 안쪽으로 파인 느낌 ---------- */
+[data-testid="stTextInputRootElement"],[data-testid="stTextAreaRootElement"],[data-baseweb="select"]>div{
+  background:#F4FBFD!important;border:1px solid rgba(11,27,43,.12)!important;border-radius:10px!important;
+  box-shadow:0 2px 4px rgba(0,80,110,.12) inset, 0 1px 0 #FFFFFF!important}
+[data-testid="stFileUploaderDropzone"]{background:linear-gradient(180deg,#F4FBFD,#E3F5F9);border:1px dashed #7FD3E6;border-radius:16px;box-shadow:0 2px 6px rgba(0,80,110,.10) inset}
+
+/* ---------- 사이드바: 현재 메뉴는 옥색 알약 ---------- */
+[data-testid="stSidebarNavLink"]{border-radius:10px;transition:background .15s ease, box-shadow .15s ease}
+[data-testid="stSidebarNavLink"]:hover{background:rgba(189,235,243,.5)}
+[data-testid="stSidebarNavLink"][aria-current="page"]{background:linear-gradient(180deg,#D3F3F9,#BDEBF3);color:var(--d-ink);
+  box-shadow:0 1px 0 #FFFFFF inset, 0 3px 0 rgba(0,90,120,.16), 0 7px 10px -5px rgba(0,80,110,.25)}
+[data-testid="stSidebar"] button[data-testid="stBaseButton-secondary"]{width:100%}
+[data-testid="stButtonGroup"] button{border-radius:8px!important}
+[data-testid="stButtonGroup"] button[aria-checked="true"],[data-testid="stButtonGroup"] button[aria-pressed="true"],[data-testid="stButtonGroup"] button[data-selected="true"]{
+  background:linear-gradient(180deg,#0A8FA3,#00697A)!important;color:#FFFFFF!important;box-shadow:0 2px 0 #004A57, inset 0 1px 0 rgba(255,255,255,.35)!important}
+
+/* ---------- 상단 바, 알림, 탭, 링크 ---------- */
+.st-key-sia_topbar{position:relative;isolation:isolate}
+.st-key-sia_topbar::before{content:"";position:absolute;inset:-8px -14px -2px;z-index:-1;background:#FFFFFF;border-radius:14px;box-shadow:var(--d-sh2);pointer-events:none}
+[data-testid="stAlert"]{border-radius:12px;box-shadow:var(--d-sh2)}
+[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]),[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) [data-testid="stAlertContainer"]{background:var(--d-sky2);color:var(--d-ink)}
+[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) *{color:var(--d-ink)}
+[data-testid="stPageLink-NavLink"]{border-radius:10px;transition:background .15s ease, transform .1s ease}
+[data-testid="stPageLink-NavLink"]:hover{background:rgba(189,235,243,.6);transform:translateY(-1px)}
+
+
+/* ---------- 폰: 그림자를 조금 줄여 가볍게 ---------- */
+@media (max-width:640px){
+  [data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]){box-shadow:var(--d-sh2)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* =====================================================================
+   입체 강화 (2차, 2026.11.13) — 위 규칙을 덮어써서 두께(바닥 모서리)와 빛(윗면 반사)을 더 뚜렷하게
+   ===================================================================== */
+:root{
+  --d-slab:#CFE6EE;   /* 카드 바닥 모서리 */
+  --d-sh1:0 1px 0 #FFFFFF inset, 0 -2px 0 rgba(0,100,130,.06) inset, 0 4px 0 var(--d-slab), 0 18px 28px -10px rgba(0,80,110,.34);
+  --d-sh2:0 1px 0 #FFFFFF inset, 0 3px 0 var(--d-slab), 0 9px 14px -6px rgba(0,80,110,.24);
+}
+[data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]){
+  background:linear-gradient(180deg,#FFFFFF 0,#F7FCFE 100%);box-shadow:var(--d-sh1)}
+[data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]):hover{
+  transform:translateY(-3px);box-shadow:0 1px 0 #FFFFFF inset, 0 -2px 0 rgba(0,100,130,.06) inset, 0 7px 0 var(--d-slab), 0 26px 38px -12px rgba(0,80,110,.40)}
+[data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]) [data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]){
+  box-shadow:var(--d-sh2);background:#F2FAFD}
+[data-testid="stForm"]:not([class*="1j8ouk0"]){box-shadow:var(--d-sh2)}
+[data-testid="stExpander"] details{box-shadow:var(--d-sh2)}
+
+/* 배너: 두툼한 판 */
+.st-key-home_hero{box-shadow:0 1px 0 rgba(255,255,255,.85) inset, 0 -4px 0 rgba(0,95,140,.20) inset, 0 7px 0 #0A86B5, 0 26px 38px -10px rgba(0,105,140,.50)}
+.st-key-home_hero button[data-testid="stBaseButton-primary"]{box-shadow:0 1px 0 #FFFFFF inset, 0 5px 0 rgba(0,80,110,.30), 0 12px 16px -6px rgba(0,80,110,.34)!important}
+.st-key-home_hero button[data-testid="stBaseButton-primary"]:active{box-shadow:0 0 0 rgba(0,80,110,.30), 0 2px 4px -2px rgba(0,80,110,.3)!important}
+
+/* 버튼: 바닥 모서리를 더 두껍게 */
+button[data-testid="stBaseButton-secondary"],button[data-testid="stBaseButton-secondaryFormSubmit"],button[data-testid="stPopoverButton"],
+[data-testid="stDownloadButton"] button,[data-testid="stLinkButton"] a{
+  box-shadow:0 1px 0 #FFFFFF inset, 0 -2px 0 rgba(11,27,43,.05) inset, 0 4px 0 rgba(11,27,43,.20), 0 10px 12px -6px rgba(11,27,43,.26)!important}
+button[data-testid="stBaseButton-secondary"]:active,button[data-testid="stBaseButton-secondaryFormSubmit"]:active,button[data-testid="stPopoverButton"]:active{
+  transform:translateY(4px);box-shadow:0 1px 0 #FFFFFF inset, 0 0 0 rgba(11,27,43,.2), 0 1px 3px -1px rgba(11,27,43,.25)!important}
+button[data-testid="stBaseButton-primary"],button[data-testid="stBaseButton-primaryFormSubmit"]{
+  box-shadow:0 2px 0 rgba(255,255,255,.8) inset, 0 -3px 0 rgba(160,110,0,.22) inset, 0 5px 0 #C99600, 0 12px 16px -6px rgba(120,85,0,.42)!important}
+button[data-testid="stBaseButton-primary"]:active,button[data-testid="stBaseButton-primaryFormSubmit"]:active{
+  transform:translateY(5px);box-shadow:0 2px 0 rgba(255,255,255,.8) inset, 0 0 0 #C99600, 0 2px 4px -2px rgba(120,85,0,.45)!important}
+
+/* "보기 · 읽기 · 더보기" 같은 이동 링크도 눌리는 옥색 단추로 */
+[data-testid="stMain"] [data-testid="stPageLink-NavLink"]{
+  background:linear-gradient(180deg,#E8F9FC,#C6EDF4);border-radius:10px;
+  box-shadow:0 1px 0 #FFFFFF inset, 0 3px 0 rgba(0,90,120,.18), 0 7px 9px -5px rgba(0,80,110,.26);
+  transition:transform .08s ease, box-shadow .08s ease, filter .15s ease}
+[data-testid="stMain"] [data-testid="stPageLink-NavLink"]:hover{background:linear-gradient(180deg,#F2FCFE,#D2F1F7);transform:translateY(-1px)}
+[data-testid="stMain"] [data-testid="stPageLink-NavLink"]:active{transform:translateY(3px);box-shadow:0 1px 0 #FFFFFF inset, 0 0 0 rgba(0,90,120,.18), 0 1px 3px -1px rgba(0,80,110,.3)}
+[data-testid="stMain"] .st-key-sia_topbar [data-testid="stPageLink-NavLink"]{box-shadow:none;background:#E8F9FC}
+
+/* 사진 자리, 3단계 띠, 지표 칸, 꼬리표: 두께와 윗면 빛 */
+.sia-photo{box-shadow:0 2px 0 rgba(255,255,255,.75) inset, 0 -4px 0 rgba(0,90,120,.14) inset, 0 4px 0 rgba(0,90,120,.20), 0 12px 14px -6px rgba(0,80,110,.40)}
+.sia-photo::before{height:50%;background:linear-gradient(180deg,rgba(255,255,255,.60),rgba(255,255,255,0))}
+.sia-steps{box-shadow:0 1px 0 #FFFFFF inset, 0 4px 0 rgba(0,90,120,.16), 0 12px 16px -8px rgba(0,80,110,.28)}
+.sia-steps .n{box-shadow:0 3px 0 #000000, inset 0 1px 0 rgba(255,255,255,.35)}
+[data-testid="stMetric"]{box-shadow:0 1px 0 #FFFFFF inset, 0 4px 0 rgba(0,90,120,.16), 0 10px 14px -8px rgba(0,80,110,.26)}
+.sia-chip{box-shadow:0 1px 0 #FFFFFF inset, 0 3px 0 rgba(0,90,120,.16)}
+.st-key-home_try [class*="st-key-home_try_"] button{box-shadow:0 1px 0 rgba(255,255,255,.85) inset, 0 4px 0 rgba(0,90,120,.20), 0 9px 12px -5px rgba(0,80,110,.26)!important}
+.st-key-sia_topbar::before{box-shadow:0 1px 0 #FFFFFF inset, 0 4px 0 var(--d-slab), 0 12px 16px -8px rgba(0,80,110,.26)}
+[data-testid="stSidebarNavLink"][aria-current="page"]{box-shadow:0 1px 0 #FFFFFF inset, 0 4px 0 rgba(0,90,120,.20), 0 9px 12px -6px rgba(0,80,110,.30)}
+[data-testid="stAlert"]{box-shadow:var(--d-sh2)}
+@media (max-width:640px){
+  [data-testid="stVerticalBlock"]:is([class*="st-emotion-cache-czyz8e"],[class*="st-emotion-cache-1j1lkys"]){box-shadow:var(--d-sh2)}
+}
+
+/* 사진 자리 색을 더 선명하게(회색빛이던 남색·보라 보정) */
+.t-violet{background:linear-gradient(135deg,#EADFFF,#B79CF2)}
+.t-navy{background:linear-gradient(135deg,#CFE8FA,#6DB4E8)}
+
+/* 배너 해: 글자 영역을 건드리지 않게 항상 오른쪽 아래(버튼 줄 오른쪽 빈 곳)에 둬요 */
+.st-key-home_hero::before{right:16px;top:auto;bottom:46px;width:96px;height:96px}
+@media (max-width:640px){.st-key-home_hero::before{right:10px;bottom:50px;width:64px;height:64px}}
+
+/* 2026.11.13 jongmin 관리자 대시보드 미니 그래프 흰 배경 제거 */
+[data-testid="stMetric"] svg.marks{background:transparent !important}

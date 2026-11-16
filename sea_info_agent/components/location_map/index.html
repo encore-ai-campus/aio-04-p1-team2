@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    html, body { margin: 0; font: 14px sans-serif; color: #12344d; }
+    #map { height: 300px; border-radius: 12px; background: #eaf6f8; }
+    #status { margin: 8px 0; min-height: 20px; }
+    button { border: 1px solid #c8dfe5; border-radius: 8px; background: white; color: #12344d; padding: 7px 12px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="map" aria-label="만난 곳 선택 지도"></div>
+  <p id="status">지도를 눌러 만난 곳에 핀을 놓아 주세요.</p>
+  <button id="clear" type="button">위치 선택 지우기</button>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // 2026.11.12 sunghoon 지도 클릭·확대·축소와 핀 위치를 Streamlit 상태에 연결
+    const send = (type, extra = {}) => window.parent.postMessage({isStreamlitMessage: true, type, ...extra}, "*");
+    // 2026.11.12 sunghoon 상태 문구와 버튼이 잘리지 않도록 실제 콘텐츠 높이에 맞춰 지도 영역 조절
+    const resizeFrame = () => send("streamlit:setFrameHeight", {height: Math.ceil(document.body.getBoundingClientRect().height) + 8});
+    let map, marker, initialized = false;
+    function pin(lat, lon, emit) {
+      if (marker) marker.setLatLng([lat, lon]);
+      else marker = L.marker([lat, lon]).addTo(map);
+      document.getElementById("status").textContent = `선택한 위치: 위도 ${lat.toFixed(5)}, 경도 ${lon.toFixed(5)}`;
+      resizeFrame();
+      if (emit) send("streamlit:setComponentValue", {value: {lat, lon}, dataType: "json"});
+    }
+    window.addEventListener("message", event => {
+      if (event.data.type !== "streamlit:render" || initialized) return;
+      initialized = true;
+      if (typeof L === "undefined") {
+        document.getElementById("status").textContent = "지도를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.";
+        return;
+      }
+      const initial = event.data.args.initial;
+      map = L.map("map").setView(initial || [36.2, 127.8], initial ? 12 : 6);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+      }).addTo(map);
+      if (initial) pin(initial[0], initial[1], true);
+      map.on("click", event => pin(event.latlng.lat, event.latlng.lng, true));
+      document.getElementById("clear").onclick = () => {
+        if (marker) map.removeLayer(marker);
+        marker = null;
+        document.getElementById("status").textContent = "지도를 눌러 만난 곳에 핀을 놓아 주세요.";
+        resizeFrame();
+        send("streamlit:setComponentValue", {value: {clear: true}, dataType: "json"});
+      };
+      setTimeout(() => map.invalidateSize(), 100);
+    });
+    send("streamlit:componentReady", {apiVersion: 1});
+    resizeFrame();
+    if (window.ResizeObserver) new ResizeObserver(resizeFrame).observe(document.body);
+  </script>
+</body>
+</html>

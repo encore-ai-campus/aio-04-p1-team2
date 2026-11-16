@@ -1,0 +1,636 @@
+/* Sea-Info Agent 공통 CSS (편성훈). 색은 7장 톤앤매너 값만 써요. */
+/* 위쪽 머리 영역(높이 60px)에 상단 바가 가리지 않게 4rem 띄워요 */
+[data-testid="stMainBlockContainer"]{max-width:1200px;padding-top:4rem;padding-bottom:4rem}
+@media (max-width:640px){[data-testid="stMainBlockContainer"]{padding-left:1rem;padding-right:1rem;padding-top:4rem}}
+/* 태블릿 · 작은 노트북: 왼쪽 메뉴가 300px를 차지하니 본문 좌우 여백을 줄여요 */
+@media (min-width:641px) and (max-width:1100px){[data-testid="stMainBlockContainer"]{padding-left:1.5rem;padding-right:1.5rem}}
+
+/* 제목 */
+/* 생물 이름 검색: 기본 영문 제출 안내·글자 수는 설명 아래의 한글 안내로 대신한다. */
+.st-key-home_species_search_card [data-testid="InputInstructions"],
+.st-key-species_name_search [data-testid="InputInstructions"]{display:none}
+
+.sia-head{margin:.25rem 0 .5rem}
+h1.sia-title{font-size:28px;font-weight:700;line-height:1.3;margin:0;padding:0;color:#12344D}
+p.sia-desc{color:#4A6274;font-size:15px;margin:.35rem 0 0}
+h2.sia-h2{font-size:20px;font-weight:700;margin:0;padding:0;color:#12344D}
+@media (max-width:640px){h1.sia-title{font-size:24px} h2.sia-h2{font-size:18px}}
+/* 바다 놀이터 "더 해 보기" 접이식 제목: 페이지 제목(h1.sia-title)과 같은 크기 */
+.st-key-extra_games [data-testid="stExpander"] summary p{font-size:28px;font-weight:700;line-height:1.3;color:#12344D}
+.st-key-extra_games [data-testid="stExpander"] summary svg{width:1.4rem;height:1.4rem}
+@media (max-width:640px){.st-key-extra_games [data-testid="stExpander"] summary p{font-size:24px}}
+.sia-muted{color:#4A6274;font-size:14px;line-height:1.6;margin:0 0 .15rem;padding-bottom:2px}
+
+/* 버튼 · 링크: 손가락으로 누르기 쉽게 44px */
+.stButton button,.stFormSubmitButton button,.stDownloadButton button,.stLinkButton a{min-height:44px;font-weight:600}
+[data-testid="stPageLink"] a{min-height:40px}
+
+/* 사진 자리 타일 */
+.sia-photo{border-radius:14px;display:flex;align-items:center;justify-content:center;width:100%;position:relative;overflow:hidden}
+.sia-photo span{line-height:1;filter:drop-shadow(0 4px 6px rgba(18,52,77,.15))}
+/* 2026.11.12 sunghoon 수족관 카드 사진과 글자 영역을 고정해 카드 높이와 버튼 위치를 통일 */
+[class*="st-key-species_card_"] [data-testid="stImage"] img{width:100%;height:104px;object-fit:cover;border-radius:14px}
+[class*="st-key-species_card_"] .aquarium-card-name{height:44px;line-height:22px;font-weight:700;overflow:hidden;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+[class*="st-key-species_card_"] .aquarium-card-detail{height:24px;line-height:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#4A6274}
+.sia-photo-cap{position:absolute;left:10px;bottom:8px;font-style:normal;font-size:12px;color:#12344D;background:rgba(255,255,255,.8);padding:1px 8px;border-radius:999px}
+.t-aqua{background:linear-gradient(135deg,#D6F1F3,#8ED3DC)}
+.t-sand{background:linear-gradient(135deg,#FFF3DC,#F2D29B)}
+.t-coral{background:linear-gradient(135deg,#FFE6DD,#F6B5A2)}
+.t-violet{background:linear-gradient(135deg,#ECE6F8,#C3B4E8)}
+.t-navy{background:linear-gradient(135deg,#C9D9EA,#7E9DC0)}
+
+/* 꼬리표 */
+.sia-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sia-chip{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;line-height:1.5;padding:2px 10px;border-radius:999px;background:#EAF6F7;color:#12344D;border:1px solid #D3E4E8;white-space:nowrap}
+.sia-chip.demo{background:#FFF6E5;border-color:#F2D29B;color:#8A5A00}
+.sia-chip.ok{background:#E6F5EC;border-color:transparent;color:#1F7A4D}
+.sia-chip.warn{background:#FFF4D6;border-color:transparent;color:#8A5A00}
+.sia-chip.danger{background:#FDECEA;border-color:transparent;color:#B42318}
+.sia-chip.coral{background:#FFF1EC;border-color:transparent;color:#B8432A}
+.sia-chip.sea{background:#0B7285;border-color:transparent;color:#FFFFFF}
+
+/* 빈 상태 */
+.sia-empty{text-align:center;padding:.5rem 0}
+.sia-empty .ic{font-size:40px;line-height:1.2}
+.sia-empty p{color:#4A6274;margin:.4rem 0 0}
+
+/* 메인 배너 (홈) */
+.sia-hero{border-radius:18px;padding:28px 26px;background:linear-gradient(120deg,#0B4F6C,#0B7285 55%,#1792A3);color:#FFFFFF}
+.sia-hero .eyebrow{font-size:12px;letter-spacing:.12em;opacity:.85}
+.sia-hero h2{font-size:28px;font-weight:700;margin:.35rem 0 .3rem;color:#FFFFFF;padding:0}
+.sia-hero p{margin:0;opacity:.92}
+@media (max-width:640px){.sia-hero{padding:22px 18px}.sia-hero h2{font-size:24px}}
+
+/* 축하 팝업 */
+.sia-celebrate{text-align:center;background:#FFF6E5;border-radius:14px;padding:18px 12px 14px}
+.sia-celebrate .big{font-size:44px;line-height:1}
+.sia-celebrate h3{font-size:20px;margin:.4rem 0 .2rem;padding:0}
+
+/* 상단 바 */
+.st-key-sia_topbar{padding-bottom:.25rem;border-bottom:1px solid #D3E4E8;margin-bottom:.5rem}
+
+/* 작은 사진 + 글 한 줄 */
+.sia-item{display:flex;gap:12px;align-items:center}
+.sia-item .sia-photo{border-radius:10px}
+.sia-item .sia-muted{color:#4A6274;font-size:14px}
+
+/* Streamlit 1.67은 글 블록마다 아래 여백을 -1rem 줘요. 우리 HTML 블록에는 그만큼 되돌려요 */
+[data-testid="stMarkdownContainer"]:has(> .sia-item, > .sia-muted, > .sia-chips, > .sia-head, > .sia-empty, > .sia-celebrate, > .sia-photo){margin-bottom:0}
+
+/* 로그인 쿠키를 쓰는 보이지 않는 칸 */
+.st-key-sia_cookie{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+
+/* ---------- 사진 올리기: 영어 문구를 한국어로, 버튼끼리 붙지 않게 ---------- */
+[data-testid="stFileUploaderDropzone"] button [data-testid="stMarkdownContainer"] p{font-size:0;line-height:0}
+[data-testid="stFileUploaderDropzone"] button [data-testid="stMarkdownContainer"] p::after{content:"사진 올리기";font-size:15px;line-height:1.4}
+[data-testid="stFileUploaderDropzone"] button{min-height:44px;padding:.5rem 1.1rem}
+[data-testid="stFileUploaderDropzoneInstructions"]{display:none}
+[data-testid="stFileUploaderFile"]{gap:.75rem}
+div:has(> button[data-variant="pills"]){gap:.5rem}
+.st-key-identify_preview img{max-height:340px;object-fit:contain;border-radius:14px;background:#EAF6F8}
+@media (max-width:640px){
+  [data-testid="stFileUploaderDropzone"] button{width:100%}
+}
+
+/* ---------- 홈 배너: 버튼을 배너 안에, 3단계 안내는 띠로 ---------- */
+.st-key-home_hero{background:linear-gradient(120deg,#0B4F6C,#0B7285 55%,#1792A3);border-radius:18px;padding:28px 26px}
+.st-key-home_hero [data-testid="stMarkdownContainer"]{margin-bottom:0}
+.st-key-home_hero .eyebrow{font-size:12px;letter-spacing:.12em;color:#FFFFFF;opacity:.85}
+.st-key-home_hero h2{font-size:28px;font-weight:700;margin:.35rem 0 .3rem;color:#FFFFFF;padding:0}
+.st-key-home_hero p{margin:0;color:#FFFFFF;opacity:.92}
+.st-key-home_hero button[kind="primary"]{background:#FFFFFF;border-color:#FFFFFF;min-height:46px;padding:.55rem 1.25rem}
+.st-key-home_hero button[kind="primary"] *{color:#0B4F6C;font-weight:700}
+.st-key-home_hero button[kind="primary"]:hover{background:#E3F4F6;border-color:#E3F4F6}
+.st-key-home_hero button[kind="primary"]:focus-visible{outline:3px solid #FFD166;outline-offset:2px}
+.sia-hero-chip{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.16);color:#FFFFFF;font-size:13px;font-weight:500}
+.sia-steps{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;background:#F3FAFB;border:1px solid #D3E4E8;border-radius:14px;padding:12px 16px;margin-top:.25rem}
+.sia-steps .step{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:#12344D}
+.sia-steps .n{width:22px;height:22px;border-radius:50%;background:#0B7285;color:#FFFFFF;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.sia-steps .arr{color:#7F9AA5;font-size:18px;line-height:1}
+[data-testid="stMarkdownContainer"]:has(> .sia-steps){margin-bottom:0}
+.st-key-home_try [data-testid="stHorizontalBlock"], .st-key-home_try > div:last-child{gap:.6rem}
+@media (max-width:640px){
+  .st-key-home_hero{padding:22px 18px}
+  .st-key-home_hero h2{font-size:24px}
+  .st-key-home_identify{flex:1 1 100% !important;width:100% !important}
+  .st-key-home_identify .stButton, .st-key-home_identify button{width:100%}
+}
+@media (max-width:1100px){
+  .sia-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:12px 8px;text-align:center}
+  .sia-steps .arr{display:none}
+  .sia-steps .step{flex-direction:column;gap:5px;font-size:13px}
+}
+
+/* Align the recent observations section with the bottom of the tide card. */
+[data-testid="stHorizontalBlock"]:has(.st-key-home_species_search_card):has(.st-key-home_recent) > [data-testid="stColumn"] {
+  align-self: stretch;
+}
+[data-testid="stHorizontalBlock"]:has(.st-key-home_species_search_card):has(.st-key-home_recent) > [data-testid="stColumn"]:first-child > [data-testid="stVerticalBlock"] {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+[data-testid="stHorizontalBlock"]:has(.st-key-home_species_search_card):has(.st-key-home_recent) .st-key-home_recent {
+  margin-top: auto;
+}
+
+/* Playground cards span the same left-column width as the aquarium panel. */
+.st-key-home_playground_cards {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  width: 100%;
+}
+.st-key-home_playground_cards > [data-testid="stLayoutWrapper"] {
+  min-width: 0;
+  width: 100% !important;
+  height: 100%;
+}
+.st-key-home_playground_cards > [data-testid="stLayoutWrapper"] > [data-testid="stVerticalBlock"] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.st-key-home_playground_cards > [data-testid="stLayoutWrapper"] > [data-testid="stVerticalBlock"] > [data-testid="stElementContainer"]:last-child {
+  margin-top: auto;
+}
+/* Four recent cards in two equal columns, with compact aligned content. */
+.st-key-home_recent {
+  background: #f8fcfd;
+  border-color: #d3e4e8;
+  width: 100%;
+}
+.st-key-home_recent_cards [data-testid="stHorizontalBlock"] {
+  align-items: stretch;
+}
+.st-key-home_recent_cards [data-testid="stColumn"] {
+  min-width: 0;
+  display: flex;
+}
+.st-key-home_recent_cards [data-testid="stColumn"] > [data-testid="stVerticalBlock"] {
+  width: 100%;
+  height: 100%;
+}
+.st-key-home_recent [class*="st-key-home_recent_post_"] {
+  background: #ffffff;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stVerticalBlock"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.home-recent-title {
+  color: #12344d;
+  font-weight: 700;
+  line-height: 1.5;
+  height: 3em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+/* Keep reactions and the view link beside the author, reducing card height. */
+.st-key-home_recent [class*="st-key-home_recent_post_"] {
+  padding: 12px;
+}
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stVerticalBlock"] {
+  gap: 0.375rem;
+}
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stHorizontalBlock"] {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+@media (max-width: 800px) {
+  .st-key-home_recent [class*="st-key-home_recent_post_"] .sia-muted {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .st-key-home_recent [class*="st-key-home_recent_post_"] .sia-chip {
+    padding-inline: 6px;
+    font-size: 11px;
+  }
+  .st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stHorizontalBlock"] {
+    gap: 4px;
+  }
+}
+/* Real observation photos keep the same tile height as emoji placeholders. */
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stImage"] {
+  height: 120px;
+  overflow: hidden;
+  border-radius: 14px;
+}
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stImage"] img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+/* Compact aquarium totals at the right and tidy friend preview cards. */
+.st-key-home_aquarium_preview .home-aq-stats {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  color: #607989;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.st-key-home_aquarium_preview .home-aq-stats b {
+  color: #12344d;
+  font-size: 14px;
+  margin-left: 4px;
+}
+.st-key-home_aquarium_preview [class*="st-key-home_aq_friend_"] {
+  background: #f8fcfd;
+  width: 100%;
+  height: 100%;
+}
+.st-key-home_aquarium_preview [class*="st-key-home_aq_friend_"] [data-testid="stVerticalBlock"] {
+  gap: 0.45rem;
+}
+@media (max-width: 800px) {
+  .st-key-home_aquarium_preview .home-aq-stats { gap: 8px; font-size: 11px; }
+  .st-key-home_aquarium_preview .home-aq-stats b { font-size: 12px; }
+}
+
+/* Aquarium heading and compact summary belong to the same outer card. */
+.st-key-home_aquarium_preview .home-aq-stats {
+  gap: 8px;
+  align-items: center;
+}
+.st-key-home_aquarium_preview .home-aq-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 5px 9px;
+  border: 1px solid #d5e9ef;
+  border-radius: 10px;
+  background: #eff9fc;
+  box-shadow: 0 2px 0 #dceef3;
+}
+@media (max-width: 800px) {
+  .st-key-home_aquarium_preview .home-aq-stat { padding: 4px 6px; }
+}
+
+/* Third aquarium preview column: totals in a card matching the friend cards. */
+.st-key-home_aquarium_preview .st-key-home_aq_summary_card {
+  background: #f8fcfd;
+  width: 100%;
+  height: 100%;
+}
+.st-key-home_aquarium_preview .home-aq-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-height: 174px;
+}
+.st-key-home_aquarium_preview .home-aq-summary-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px 10px;
+  border: 1px solid #d5e9ef;
+  border-radius: 10px;
+  background: #eff9fc;
+  color: #607989;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 0 #dceef3;
+}
+.st-key-home_aquarium_preview .home-aq-summary-item strong {
+  color: #12344d;
+  font-size: 15px;
+}
+
+/* Keep the three preview cards equal in height; make only the totals card flat. */
+.st-key-home_aquarium_preview [class*="st-key-home_aq_friend_"],
+.st-key-home_aquarium_preview .st-key-home_aq_summary_card {
+  min-height: 252px;
+  box-sizing: border-box;
+}
+.st-key-home_aquarium_preview .st-key-home_aq_summary_card,
+.st-key-home_aquarium_preview .st-key-home_aq_summary_card:hover {
+  background: #f8fcfd !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.st-key-home_aquarium_preview .home-aq-summary {
+  min-height: 0;
+  gap: 9px;
+}
+.st-key-home_aquarium_preview .home-aq-summary-item {
+  box-shadow: none !important;
+}
+
+/* Extend the two right-column home cards toward their left-column neighbors. */
+.st-key-home_tide_card { padding-bottom: 76px; }
+.st-key-home_news_card { padding-bottom: 44px; }
+@media (max-width: 800px) {
+  .st-key-home_tide_card,
+  .st-key-home_news_card { padding-bottom: 16px; }
+}
+
+/* Six observations in a compact three-column grid. */
+.st-key-home_recent_cards [data-testid="stHorizontalBlock"] { gap: 10px; }
+.st-key-home_recent [class*="st-key-home_recent_post_"] { padding: 10px; }
+.st-key-home_recent [class*="st-key-home_recent_post_"] .sia-photo { height: 104px !important; }
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stImage"],
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stImage"] img { height: 104px; }
+.st-key-home_recent .home-recent-title { font-size: 13px; }
+.st-key-home_recent [class*="st-key-home_recent_post_"] .sia-muted { font-size: 11px; }
+.st-key-home_recent [class*="st-key-home_recent_post_"] [data-testid="stHorizontalBlock"] { gap: 4px; }
+
+/* Let the sea-blue page background show through the two large panels. */
+.st-key-home_recent,
+.st-key-home_aquarium_preview {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* White category tabs float over nearly transparent section panels. */
+.st-key-home_recent,
+.st-key-home_aquarium_preview {
+  background: rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter: none;
+  border-color: rgba(184, 218, 228, 0.7) !important;
+}
+.st-key-home_recent_header,
+.st-key-home_aquarium_header {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: -26px;
+  padding: 9px 14px;
+  border: 1px solid #d3e4e8;
+  border-radius: 15px;
+  background: #ffffff !important;
+  box-shadow: 0 3px 9px rgba(0, 80, 110, 0.10);
+}
+.st-key-home_recent,
+.st-key-home_aquarium_preview { padding-top: 22px; }
+/* Inset category bars sit fully inside their transparent section panels. */
+.st-key-home_recent,
+.st-key-home_aquarium_preview { padding-top: 14px; }
+.st-key-home_recent_header,
+.st-key-home_aquarium_header {
+  position: static;
+  z-index: auto;
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 80, 110, 0.08);
+}
+.st-key-home_recent_header [data-testid="stHorizontalBlock"],
+.st-key-home_aquarium_header [data-testid="stHorizontalBlock"] {
+  width: 100%;
+  align-items: center !important;
+}
+.st-key-home_recent_header h2.sia-h2,
+.st-key-home_aquarium_header h2.sia-h2 { line-height: 1.2; }
+
+.st-key-home_recent_header h2.sia-h2,
+.st-key-home_aquarium_header h2.sia-h2 { transform: translateY(-3px); }
+
+/* The category actions are compact, vertically centered buttons. */
+[data-testid="stMain"] .st-key-home_recent_header [data-testid="stPageLink-NavLink"],
+[data-testid="stMain"] .st-key-home_aquarium_header [data-testid="stPageLink-NavLink"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 5px 10px;
+  border: 1px solid #c7e7ee;
+  border-radius: 10px;
+  background: #e6f8fc;
+  color: #17435d;
+  box-shadow: 0 2px 0 #b9dfe7;
+  transform: none;
+}
+[data-testid="stMain"] .st-key-home_recent_header [data-testid="stPageLink-NavLink"]:hover,
+[data-testid="stMain"] .st-key-home_aquarium_header [data-testid="stPageLink-NavLink"]:hover {
+  background: #d9f2f8;
+  transform: none;
+}
+
+/* Match both category labels to the bar center and shorten their action buttons. */
+.st-key-home_recent_header h2.sia-h2,
+.st-key-home_aquarium_header h2.sia-h2 { transform: translateY(-8px); }
+[data-testid="stMain"] .st-key-home_recent_header [data-testid="stPageLink-NavLink"],
+[data-testid="stMain"] .st-key-home_aquarium_header [data-testid="stPageLink-NavLink"] {
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  padding: 0 10px !important;
+  box-sizing: border-box;
+}
+.st-key-home_recent_header [data-testid="stPageLink-NavLink"] p,
+.st-key-home_aquarium_header [data-testid="stPageLink-NavLink"] p {
+  line-height: 20px !important;
+  margin: 0 !important;
+}
+
+.st-key-home_recent_header [data-testid="stHorizontalBlock"],
+.st-key-home_aquarium_header [data-testid="stHorizontalBlock"] {
+  transform: translateY(5px);
+}
+
+/* Aquarium gallery fills the search/sort row and keeps all thumbnails equal. */
+.st-key-aquarium_card_grid [data-testid="stHorizontalBlock"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+  gap: 12px;
+  width: 100%;
+  align-items: stretch;
+}
+.st-key-aquarium_card_grid [class*="st-key-species_card_"] {
+  width: 100% !important;
+  min-width: 0;
+  height: 100%;
+  overflow: visible;
+}
+.st-key-aquarium_card_grid [class*="st-key-species_card_"] [data-testid="stImage"] {
+  height: 104px;
+  overflow: hidden;
+  border-radius: 14px;
+}
+.st-key-aquarium_card_grid [class*="st-key-species_card_"] [data-testid="stImage"] img {
+  display: block;
+  width: 100%;
+  height: 104px;
+  object-fit: cover;
+}
+.st-key-aquarium_card_grid [class*="st-key-species_card_"] .sia-photo {
+  height: 104px !important;
+}
+@media (max-width: 800px) {
+  .st-key-aquarium_card_grid [data-testid="stHorizontalBlock"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Streamlit applies the key to the horizontal block itself. */
+.st-key-aquarium_card_grid[data-testid="stHorizontalBlock"] {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+.st-key-aquarium_card_grid > [data-testid="stLayoutWrapper"] {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+@media (max-width: 800px) {
+  .st-key-aquarium_card_grid[data-testid="stHorizontalBlock"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Aquarium overview: one clear heading and three equal, aligned figures. */
+.st-key-aq_overview .aq-overview-title {
+  color: #12344d;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 13px;
+}
+.st-key-aq_overview .aq-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.st-key-aq_overview .aq-overview-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  min-height: 88px;
+  padding: 11px 13px;
+  border: 1px solid #d7ebf0;
+  border-radius: 12px;
+  background: #edf9fc;
+}
+.st-key-aq_overview .aq-overview-metric > span {
+  color: #4a6879;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.st-key-aq_overview .aq-overview-metric strong {
+  color: #12344d;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.st-key-aq_overview .aq-overview-metric small {
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 2px;
+}
+@media (max-width: 640px) {
+  .st-key-aq_overview .aq-overview-grid { gap: 7px; }
+  .st-key-aq_overview .aq-overview-metric { padding: 9px 8px; }
+  .st-key-aq_overview .aq-overview-metric strong { font-size: 25px; }
+  .st-key-aq_overview .aq-overview-metric small { font-size: 13px; }
+}
+
+.st-key-aq_overview { padding-bottom: 16px !important; }
+
+.st-key-aq_overview [data-testid="stMarkdownContainer"] {
+  margin-bottom: 0 !important;
+}
+
+/* Overview labels sit a little lower; figures read from the right edge. */
+.st-key-aq_overview .aq-overview-metric > span { margin-top: 5px; }
+.st-key-aq_overview .aq-overview-metric strong {
+  align-self: flex-end;
+  text-align: right;
+  font-size: 34px;
+}
+.st-key-aq_overview .aq-overview-metric small { font-size: 16px; }
+@media (max-width: 640px) {
+  .st-key-aq_overview .aq-overview-metric strong { font-size: 29px; }
+  .st-key-aq_overview .aq-overview-metric small { font-size: 14px; }
+}
+
+/* Playground extra games: uniform card size and bottom-aligned action. */
+.st-key-extra_games [class*="st-key-extra_game_card_"] {
+  min-height: 439px;
+  box-sizing: border-box;
+}
+.st-key-extra_games [class*="st-key-extra_game_card_"] > [data-testid="stElementContainer"]:last-child {
+  margin-top: auto;
+}
+
+/* Flat, translucent example picker with motion limited to the three buttons. */
+.st-key-home_try {
+  margin-top: -8px;
+  padding: 10px 12px;
+  border: 0 !important;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .10) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+.st-key-home_try:hover {
+  box-shadow: none !important;
+  transform: none !important;
+}
+.st-key-home_try_row[data-testid="stHorizontalBlock"] {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(185px, 1.7fr);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.st-key-home_try_row > [data-testid="stElementContainer"] {
+  min-width: 0;
+  width: 100% !important;
+}
+.st-key-home_try .home-try-title {
+  color: #12344d;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+  white-space: nowrap;
+  padding-left: 12px;
+}
+.st-key-home_try [data-testid="stMarkdown"] [class*="e1yqkw3v0"] {
+  margin-bottom: 0 !important;
+}
+.st-key-home_try [data-testid="stButton"] button {
+  width: 100%;
+  min-height: 38px;
+  padding: 5px 3px;
+  white-space: nowrap;
+  font-size: 13px;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.st-key-home_try [data-testid="stButton"] button:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-key-home_try [data-testid="stButton"] button { transition: none; }
+  .st-key-home_try [data-testid="stButton"] button:hover { transform: none; }
+}
+@media (max-width: 480px) {
+  .st-key-home_try_row[data-testid="stHorizontalBlock"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .st-key-home_try_row > [data-testid="stElementContainer"]:last-child { grid-column: 1 / -1; }
+  .st-key-home_try .home-try-title { padding-left: 0; }
+}

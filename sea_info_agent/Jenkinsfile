@@ -1,0 +1,73 @@
+// 2026.11.13 sunghoon SVN 코드를 검사하고 OCI에 배포하며 실패 시 이전 코드를 복구
+pipeline {
+    agent any
+    options { skipDefaultCheckout(); disableConcurrentBuilds(); timestamps() }
+    parameters {
+        string(name: 'SVN_REVISION', defaultValue: 'HEAD', description: '검증할 SVN 리비전')
+        booleanParam(name: 'DEPLOY_TO_OCI_TEST', defaultValue: true, description: '검증 후 OCI 테스트 서버에 배포')
+    }
+    stages {
+        stage('SVN 체크아웃') {
+            steps {
+                script {
+                    // 2026.11.13 sunghoon 유효하지 않은 리비전으로 다른 저장소를 참조하지 않도록 제한
+                    if (!(params.SVN_REVISION == 'HEAD' || params.SVN_REVISION ==~ /[0-9]+/)) {
+                        error('SVN_REVISION에는 HEAD 또는 숫자 리비전만 입력하세요.')
+                    }
+                }
+                checkout([$class: 'SubversionSCM',
+                    locations: [[credentialsId: 'svn-sea-info',
+                        remote: "https://192.168.0.9/svn/sea_info/trunk@${params.SVN_REVISION}",
+                        local: 'source', depthOption: 'infinity', ignoreExternalsOption: true]],
+                    workspaceUpdater: [$class: 'CheckoutUpdater']])
+            }
+        }
+        stage('배포 필수 파일 검사') {
+            steps {
+                powershell '''
+                    $ErrorActionPreference = 'Stop'
+                    $files = @('app.py', 'requirements.txt', 'tools/run_api.py', 'tools/oci_deploy.py', 'backend/core/log_safety.py', 'backend/routers/admin_logs.py', 'views/admin/logs.py')
+                    foreach ($file in $files) {
+                        if (-not (Test-Path -LiteralPath (Join-Path 'source' $file) -PathType Leaf)) {
+                            throw "SVN에 배포 필수 파일이 없습니다: $file. 현재 서버의 최신 파일을 덮어쓰지 않도록 중단합니다."
+                        }
+                    }
+                '''
+            }
+        }
+        stage('OCI 테스트 서버 배포') {
+            when { expression { params.DEPLOY_TO_OCI_TEST } }
+            steps {
+                // 2026.11.13 sunghoon 자격 증명과 고정 호스트 키로 접속하고 서버에서 상태 검사 및 복구
+                withCredentials([sshUserPrivateKey(credentialsId: 'sea-info-oci-test-ssh', keyFileVariable: 'OCI_KEY', usernameVariable: 'OCI_USER'),
+                                 file(credentialsId: 'sea-info-oci-test-known-hosts', variable: 'OCI_KNOWN_HOSTS')]) {
+                    powershell '''
+                        $ErrorActionPreference = 'Stop'
+                        if ($env:BUILD_NUMBER -notmatch '^\\d+$') { throw '빌드 번호가 잘못되었습니다.' }
+                        $archive = Join-Path $env:WORKSPACE "sea-info-$env:BUILD_NUMBER.tar.gz"
+                        $items = @('app.py', 'requirements.txt', '.streamlit', 'assets', 'backend', 'components', 'jobs', 'mock', 'services', 'static', 'tools', 'views')
+                        Push-Location source
+                        try {
+                            & tar.exe -czf $archive --exclude=.svn --exclude=__pycache__ --exclude=.env --exclude='*.pyc' --exclude='*.db' @items
+                            if ($LASTEXITCODE -ne 0) { throw '배포 파일 생성 실패' }
+                        } finally { Pop-Location }
+                        # 2026.11.13 sunghoon Jenkins 임시 SSH 키를 실행 계정만 읽도록 제한
+                        $jenkinsSid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+                        & icacls.exe $env:OCI_KEY /inheritance:r /grant:r ("*{0}:(R)" -f $jenkinsSid)
+                        if ($LASTEXITCODE -ne 0) { throw 'SSH 개인키 파일 권한 설정 실패' }
+                        $sshOptions = @('-i', $env:OCI_KEY, '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes', '-o', "UserKnownHostsFile=$env:OCI_KNOWN_HOSTS")
+                        $remote = "$env:OCI_USER@129.225.181.89"
+                        & ssh.exe @sshOptions $remote 'mkdir -p -m 700 /home/ubuntu/sea-info-deploy/incoming'
+                        if ($LASTEXITCODE -ne 0) { throw '서버 배포 디렉터리 준비 실패' }
+                        & scp.exe @sshOptions $archive "${remote}:/home/ubuntu/sea-info-deploy/incoming/sea-info-$env:BUILD_NUMBER.tar.gz"
+                        if ($LASTEXITCODE -ne 0) { throw '배포 파일 전송 실패' }
+                        & scp.exe @sshOptions 'source/tools/oci_deploy.py' "${remote}:/home/ubuntu/sea-info-deploy/incoming/sea-info-deploy-$env:BUILD_NUMBER.py"
+                        if ($LASTEXITCODE -ne 0) { throw '배포 스크립트 전송 실패' }
+                        & ssh.exe @sshOptions $remote "python3 /home/ubuntu/sea-info-deploy/incoming/sea-info-deploy-$env:BUILD_NUMBER.py deploy $env:BUILD_NUMBER /home/ubuntu/sea-info-deploy/incoming/sea-info-$env:BUILD_NUMBER.tar.gz"
+                        if ($LASTEXITCODE -ne 0) { throw '배포 또는 상태 확인 실패. 서버 복구 상태를 확인하세요.' }
+                    '''
+                }
+            }
+        }
+    }
+}

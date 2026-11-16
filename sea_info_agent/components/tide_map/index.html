@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <link rel="stylesheet" href="vendor/leaflet.css">
+ <link rel="stylesheet" href="vendor/MarkerCluster.css">
+ <link rel="stylesheet" href="vendor/MarkerCluster.Default.css">
+ <style>
+  *{box-sizing:border-box}body{margin:0;font:14px/1.55 'Malgun Gothic',sans-serif;color:#163e50;background:transparent}
+  #map{height:380px;border-radius:12px;background:#e8f3f6}#status{margin:8px 0 0;color:#4d6c7a;font-size:12px}
+  .tide-flag{background:transparent;border:0}.flag-shape{display:block;width:27px;height:32px;filter:drop-shadow(0 1px 2px #173d5033)}
+  .flag-shape::before{content:'';position:absolute;left:5px;top:3px;height:26px;border-left:2px solid #17495d}
+  .flag-shape::after{content:'';position:absolute;left:7px;top:3px;width:18px;height:13px;background:#087f94;clip-path:polygon(0 0,100% 0,76% 50%,100% 100%,0 100%)}
+  .leaflet-container img.leaflet-tile{mix-blend-mode:normal;image-rendering:auto}
+  .selected .flag-shape::after{background:#d65c27}.leaflet-tooltip{font:13px 'Malgun Gothic',sans-serif}
+  @media(max-width:400px){#map{height:360px}.leaflet-control-attribution{font-size:10px}}
+ </style>
+</head>
+<body>
+ <div id="map" role="region" aria-label="국립해양조사원 공식 예보지점 지도"></div>
+ <p id="status" role="status" aria-live="polite">공식 예보지점 지도를 준비하고 있어요.</p>
+ <script src="vendor/leaflet.js"></script><script src="vendor/leaflet.markercluster.js"></script>
+ <script src="map.js?v=20261115-tiles"></script>
+</body>
+</html>
